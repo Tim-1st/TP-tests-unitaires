@@ -14,13 +14,15 @@ const mockedData = {
     "2028-07-14": "14 juillet",
 };
 
-//Fausses données API pour les utilisateurs
+//Fausses données API pour les utilisateurs (moke)
 const mockedUsers = [
     { id: 1, name: "Alice", username: "alice", email: "alice@test.fr" },
 ];
 
 vi.mock("../src/api.js", () => ({
     fetchNationalHolidays: vi.fn(() => mockedData),
+
+    // vi.mock pour fetchUsers, renvoie les fausses données d'utilisateurs
     fetchUsers: vi.fn(() => mockedUsers),
 }));
 
@@ -40,7 +42,7 @@ describe("List national holidays metropole", () => {
     });
 });
 
-// Test for getUsers function
+// Tests pour la fonction getUsers
 describe("List users", () => {
     it("returns an array", async () => {
         const res = await getUsers();

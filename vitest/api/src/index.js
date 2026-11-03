@@ -18,6 +18,7 @@ const getNationalHolidays = async (region = "metropole") => {
     return res;
 };
 
+// Fonction pour récupérer la liste des utilisateurs avec uniquement le nom et l'email
 const getUsers = async () => {
     const listUsers = await fetchUsers();
     const res = [];
