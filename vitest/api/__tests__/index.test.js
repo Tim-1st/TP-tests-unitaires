@@ -14,7 +14,7 @@ const mockedData = {
     "2028-07-14": "14 juillet",
 };
 
-//Fauces données API pour les utilisateurs
+//Fausses données API pour les utilisateurs
 const mockedUsers = [
     { id: 1, name: "Alice", username: "alice", email: "alice@test.fr" },
 ];

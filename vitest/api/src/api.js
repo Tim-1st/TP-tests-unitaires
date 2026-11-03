@@ -25,4 +25,4 @@ const fetchUsers = async () => {
     }
 };
 
-export { fetchNationalHolidays, fetchUsers };
+export { fetchUsers };
