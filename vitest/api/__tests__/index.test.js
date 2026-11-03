@@ -1,7 +1,7 @@
 import { vi, describe, it, expect } from "vitest";
 
-import { getNationalHolidays } from "../src/index";
-import { fetchNationalHolidays } from "../src/api";
+import { getNationalHolidays, getUsers } from "../src/index";
+import { fetchNationalHolidays, fetchUsers } from "../src/api";
 
 // Simulate the data expected from backend
 const mockedData = {
@@ -14,8 +14,14 @@ const mockedData = {
     "2028-07-14": "14 juillet",
 };
 
+//Fauces données API pour les utilisateurs
+const mockedUsers = [
+    { id: 1, name: "Alice", username: "alice", email: "alice@test.fr" },
+];
+
 vi.mock("../src/api.js", () => ({
     fetchNationalHolidays: vi.fn(() => mockedData),
+    fetchUsers: vi.fn(() => mockedUsers),
 }));
 
 describe("List national holidays metropole", () => {
@@ -31,5 +37,18 @@ describe("List national holidays metropole", () => {
         listKeys.forEach((keyExpected) => {
             expect(res[0]).toHaveProperty(keyExpected);
         });
+    });
+});
+
+// Test for getUsers function
+describe("List users", () => {
+    it("returns an array", async () => {
+        const res = await getUsers();
+        expect(Array.isArray(res)).toBe(true);
+    });
+
+    it("keeps only name and email", async () => {
+        const res = await getUsers();
+        expect(res).toEqual([{ name: "Alice", email: "alice@test.fr" }]);
     });
 });

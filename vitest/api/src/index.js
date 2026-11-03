@@ -1,4 +1,4 @@
-import { fetchNationalHolidays } from "./api.js";
+import { fetchNationalHolidays, fetchUsers } from "./api.js";
 
 const getNationalHolidays = async (region = "metropole") => {
     // Documentation : https://api.gouv.fr/documentation/jours-feries
@@ -18,4 +18,18 @@ const getNationalHolidays = async (region = "metropole") => {
     return res;
 };
 
-export { getNationalHolidays };
+const getUsers = async () => {
+    const listUsers = await fetchUsers();
+    const res = [];
+
+    for (const user of listUsers) {
+        res.push({
+            name: user.name,
+            email: user.email,
+        });
+    }
+
+    return res;
+};
+
+export { getNationalHolidays, getUsers };
